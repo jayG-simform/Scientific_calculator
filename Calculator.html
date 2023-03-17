@@ -33,11 +33,12 @@
     
                 </div>
                 <div class="__setting">
-                    <h5 class="m-0"><button style="border: none; background-color: rgba(250, 250, 250, 0.808);">MC</button></h5>
-                    <h5 class="m-0"><button style="border: none; background-color: rgba(250, 250, 250, 0.808);">MR</button></h5>
-                    <h5 class="m-0"><button style="border: none; background-color: rgba(250, 250, 250, 0.808);">M+</button></h5>
-                    <h5 class="m-0"><button style="border: none; background-color: rgba(250, 250, 250, 0.808);">M-</button></h5>
-                    <h5 class="m-0"><button style="border: none; background-color: rgba(250, 250, 250, 0.808);">MS</button></h5>
+                    <h5 class="m-0"><button class="btnDark" id="mc" onclick="memoryClear()">MC</button></h5>
+                    <h5 class="m-0"><button class="btnDark" id="mr" onclick="memoryRead()">MR</button></h5>
+                    <h5 class="m-0"><button class="btnBlack" onclick="memoryAdd()">M+</button></h5>
+                    <h5 class="m-0"><button onclick="memorySub()">M-</button></h5>
+                    <h5 class="m-0"><button class="btnBlack" onclick="memoryStore()">MS</button></h5>
+                    <h5 class="m-0"><button class="btnDark" id="mshow" onclick="showMemory()">M <i class="fa fa-angle-down" aria-hidden="true"></i></button></h5>
                 </div>
                 
                 <div class="__function">
@@ -64,8 +65,8 @@
                             </a>
     
                             <ul id="function" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><button value="degree(0)" class="dropdown-item" href="#">->deg</button></li>
-                                <li><button value="dms(0)" class="dropdown-item" href="#">->dms</button></li>
+                                <!-- <li><button value="degree(0)" class="dropdown-item" href="#">->deg</button></li>
+                                <li><button value="dms(0)" class="dropdown-item" href="#">->dms</button></li> -->
                                 <li><button onclick="ceil()" class="dropdown-item" href="#">⌈x⌉</button></li>
                                 <li><button onclick="floor()" class="dropdown-item" href="#">⌊x⌋</button></li>
                                 <li><button onclick="this.value=Math.random()" class="dropdown-item" href="#">rand</button></li>
@@ -184,6 +185,8 @@
                         
                     </div>
                 </div>
+            </div>
+            <div id="memory-show">
             </div>
         </div>
         <!-- Bootstrap 5 JS script -->

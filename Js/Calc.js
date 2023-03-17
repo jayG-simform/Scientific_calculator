@@ -8,13 +8,26 @@ let input = document.getElementById("displayInput");
 // display output
 var output = document.getElementById('output_display');
 
+// memory array 
+const memory = [];
+
+// display memory div 
+const memorySection = document.getElementById("memory-show");
+let memoryShown = false;
 
 let string = ""
 
 let arr = Array.from(buttons);
 arr.forEach(buttons => {
     buttons.addEventListener('click', (e) => {
-        if (e.target.value == '=') {
+        
+        if (input.value[0] == '*' || input.value[0] == '/' || input.value[0] == '+' || input.value[0] == '=' || input.value[0] == '%') {
+            input.innerHTML = `<p style="color:red;">Invalid!</p>`
+            input.style.opacity = 1;
+            input.style.top = 0;
+            input.value = ""
+        }
+        else if (e.target.value == '=') {
 
             try {
                 output.value = input.value;
@@ -244,6 +257,95 @@ function exp() {
     }
     else {
         input.value = '0.e+0';
+    }
+}
+
+// Store memory 
+function memoryStore(){
+    var mc_ele = document.getElementById("mc");
+    mc_ele.classList.add("btnBlack"); 
+    mc_ele.classList.remove("btnDark");
+    var mr_ele = document.getElementById("mr");
+    mr_ele.classList.add("btnBlack"); 
+    mr_ele.classList.remove("btnDark");
+    var mshow_ele = document.getElementById("mshow");
+    mshow_ele.classList.add("btnBlack"); 
+    mshow_ele.classList.remove("btnDark");
+
+    if (memory[memory.length - 1] != Number(input.value)) {
+        memory.push(Number(input.value.toString()));
+    }
+}
+
+// Read memory 
+function memoryRead(){
+    if (memory.length != 0) {
+        input.value = (memory[memory.length - 1]);
+    }
+}
+
+// Show memory 
+function showMemory() {
+    if (memory.length != 0) {
+        if (!memoryShown) {
+            let htmlText = '<h4 style="text-align: center; border-bottom: 1px solid black;"> Memory Stored </h4>';
+            for (let i = 0, len = memory.length - 1; i <= len; len--) {
+                htmlText += '<div class="text-memory"><p>';
+                htmlText += memory[len].toString();
+                htmlText += '</p></div>';
+            }
+            memorySection.style.display = "flex";
+            memorySection.innerHTML = htmlText;
+            memoryShown = true;
+        } else {
+            memorySection.style.display = "none";
+            memoryShown = false;
+        }
+    }
+    else{
+        memorySection.style.display = "none";
+        memoryShown = false;
+    }
+}
+
+// Add memory 
+function memoryAdd() {
+    var mc_ele = document.getElementById("mc");
+    mc_ele.classList.add("btnBlack"); 
+    mc_ele.classList.remove("btnDark");
+    var mr_ele = document.getElementById("mr");
+    mr_ele.classList.add("btnBlack"); 
+    mr_ele.classList.remove("btnDark");
+    var mshow_ele = document.getElementById("mshow");
+    mshow_ele.classList.add("btnBlack"); 
+    mshow_ele.classList.remove("btnDark");
+
+    if (memory.length != 0) {
+        memory[memory.length - 1] += Number(input.value.toString());
+    }
+}
+
+// Clear memory 
+function memoryClear(){
+    var mc_ele = document.getElementById("mc");
+    mc_ele.classList.add("btnDark"); 
+    mc_ele.classList.remove("btnBlack");
+    var mr_ele = document.getElementById("mr");
+    mr_ele.classList.add("btnDark"); 
+    mr_ele.classList.remove("btnBlack");
+    var mshow_ele = document.getElementById("mshow");
+    mshow_ele.classList.add("btnDark"); 
+    mshow_ele.classList.remove("btnBlack");
+    
+    if(memory.length != 0){
+        memory.length = 0;
+    }
+}
+
+// Substract memory 
+function memorySub(){
+    if (memory.length != 0){
+        memory[memory.length - 1] -= Number(input.value.toString());
     }
 }
 
