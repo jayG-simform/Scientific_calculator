@@ -92,6 +92,9 @@ body {
 .__calculator .__degree h5:hover {
     background-color: rgba(236, 236, 236, 0.795);
 }
+.__calculator .__degree button:active {
+    border-bottom: 2px solid blue;
+}
 .__calculator .__setting{
     padding: 10px;
     display: flex;

@@ -20,7 +20,7 @@ let string = ""
 let arr = Array.from(buttons);
 arr.forEach(buttons => {
     buttons.addEventListener('click', (e) => {
-        
+
         if (input.value[0] == '*' || input.value[0] == '/' || input.value[0] == '+' || input.value[0] == '=' || input.value[0] == '%') {
             input.innerHTML = `<p style="color:red;">Invalid!</p>`
             input.style.opacity = 1;
@@ -43,7 +43,7 @@ arr.forEach(buttons => {
             const fun = str.split(" ");
             let a = fun[0];
             let b = fun[2];
-            
+
             // Calculate yroot 
             if (fun[1] == 'yroot') {
                 output.value = input.value
@@ -51,7 +51,7 @@ arr.forEach(buttons => {
             }
 
             // Calculate y log base x 
-            else if (fun[1] == 'log'){
+            else if (fun[1] == 'log') {
                 let c = fun[3];
                 output.value = input.value;
                 input.value = Math.log(a) / Math.log(c);
@@ -101,13 +101,13 @@ function change() {
 }
 
 function ftoE() {
-
-    var str = input.value;
-    if (input.value) {
-        input.value = str + 'e+0';
+    if (input.value != '') {
+        const ftoE = parseFloat(input.value);
+        input.value = ftoE.toExponential();
     }
     else {
-        input.value = 'e+0';
+        const ftoE = 0;
+        input.value = ftoE.toExponential();
     }
 }
 
@@ -251,25 +251,26 @@ function floor() {
 
 // Calculate exp
 function exp() {
-    var str = input.value;
-    if (input.value) {
-        input.value = str + '.e+0';
+    if (input.value != '') {
+        const ftoE = parseFloat(input.value);
+        input.value = ftoE.toExponential();
     }
     else {
-        input.value = '0.e+0';
+        const ftoE = 0;
+        input.value = ftoE.toExponential();
     }
 }
 
 // Store memory 
-function memoryStore(){
+function memoryStore() {
     var mc_ele = document.getElementById("mc");
-    mc_ele.classList.add("btnBlack"); 
+    mc_ele.classList.add("btnBlack");
     mc_ele.classList.remove("btnDark");
     var mr_ele = document.getElementById("mr");
-    mr_ele.classList.add("btnBlack"); 
+    mr_ele.classList.add("btnBlack");
     mr_ele.classList.remove("btnDark");
     var mshow_ele = document.getElementById("mshow");
-    mshow_ele.classList.add("btnBlack"); 
+    mshow_ele.classList.add("btnBlack");
     mshow_ele.classList.remove("btnDark");
 
     if (memory[memory.length - 1] != Number(input.value)) {
@@ -278,7 +279,7 @@ function memoryStore(){
 }
 
 // Read memory 
-function memoryRead(){
+function memoryRead() {
     if (memory.length != 0) {
         input.value = (memory[memory.length - 1]);
     }
@@ -302,7 +303,7 @@ function showMemory() {
             memoryShown = false;
         }
     }
-    else{
+    else {
         memorySection.style.display = "none";
         memoryShown = false;
     }
@@ -311,13 +312,13 @@ function showMemory() {
 // Add memory 
 function memoryAdd() {
     var mc_ele = document.getElementById("mc");
-    mc_ele.classList.add("btnBlack"); 
+    mc_ele.classList.add("btnBlack");
     mc_ele.classList.remove("btnDark");
     var mr_ele = document.getElementById("mr");
-    mr_ele.classList.add("btnBlack"); 
+    mr_ele.classList.add("btnBlack");
     mr_ele.classList.remove("btnDark");
     var mshow_ele = document.getElementById("mshow");
-    mshow_ele.classList.add("btnBlack"); 
+    mshow_ele.classList.add("btnBlack");
     mshow_ele.classList.remove("btnDark");
 
     if (memory.length != 0) {
@@ -326,25 +327,25 @@ function memoryAdd() {
 }
 
 // Clear memory 
-function memoryClear(){
+function memoryClear() {
     var mc_ele = document.getElementById("mc");
-    mc_ele.classList.add("btnDark"); 
+    mc_ele.classList.add("btnDark");
     mc_ele.classList.remove("btnBlack");
     var mr_ele = document.getElementById("mr");
-    mr_ele.classList.add("btnDark"); 
+    mr_ele.classList.add("btnDark");
     mr_ele.classList.remove("btnBlack");
     var mshow_ele = document.getElementById("mshow");
-    mshow_ele.classList.add("btnDark"); 
+    mshow_ele.classList.add("btnDark");
     mshow_ele.classList.remove("btnBlack");
-    
-    if(memory.length != 0){
+
+    if (memory.length != 0) {
         memory.length = 0;
     }
 }
 
 // Substract memory 
-function memorySub(){
-    if (memory.length != 0){
+function memorySub() {
+    if (memory.length != 0) {
         memory[memory.length - 1] -= Number(input.value.toString());
     }
 }
